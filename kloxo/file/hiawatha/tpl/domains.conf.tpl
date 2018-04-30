@@ -81,12 +81,16 @@ if (($webcache === 'none') || (!$webcache)) {
 	$ports[] = '80';
 	$ports[] = '443';
 } else {
-	$ports[] = '8080';
-	$ports[] = '8443';
+	$ports[] = '80';
+	$ports[] = '443';
 }
-
-$reverseports = array('30080', '30443');
-$protocols = array('http', 'https');
+if ($webcache !== 'none') {
+	$reverseports = '8080';
+	$protocols = 'http';
+} else {
+	$reverseports = array('30080', '30443');
+	$protocols = array('http', 'https');
+}
 
 $portnames = array("nonssl", "ssl");
 
