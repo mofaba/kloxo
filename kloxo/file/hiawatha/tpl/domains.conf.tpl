@@ -84,13 +84,9 @@ if (($webcache === 'none') || (!$webcache)) {
 	$ports[] = '80';
 	$ports[] = '443';
 }
-if ($webcache !== 'none') {
-	$reverseports = '8080';
-	$protocols = 'http';
-} else {
-	$reverseports = array('30080', '30443');
-	$protocols = array('http', 'https');
-}
+
+$reverseports = array('30080', '30443');
+$protocols = array('http', 'https');
 
 $portnames = array("nonssl", "ssl");
 
@@ -526,9 +522,16 @@ VirtualHost {
 	#ReverseProxy ^/.* http://127.0.0.1:30080/ <?=$timeout;?>
 
 	#ReverseProxy !\.(pl|cgi|py|rb|shmtl) <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
+	
+	if ($webcache !== 'none') {
+	
+	ReverseProxy ^/.* http://127.0.0.1:8080/ <?=$timeout;?>
+	
+	} else {
 
 	ReverseProxy ^/.* <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
 
+	}
 <?php
 		} else {
 */
@@ -794,8 +797,15 @@ VirtualHost {
 
 	#ReverseProxy !\.(pl|cgi|py|rb|shmtl) <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
 
+	if ($webcache !== 'none') {
+	
+	ReverseProxy ^/.* http://127.0.0.1:8080/ <?=$timeout;?>
+	
+	} else {
+	
 	ReverseProxy ^/.* <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
 
+	}
 <?php
 					}
 				} else {
@@ -925,8 +935,15 @@ VirtualHost {
 
 	#ReverseProxy !\.(pl|cgi|py|rb|shmtl) <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
 
+	if ($webcache !== 'none') {
+	
+	ReverseProxy ^/.* http://127.0.0.1:8080/ <?=$timeout;?>
+	
+	} else {
+	
 	ReverseProxy ^/.* <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
-
+	
+	}
 <?php
 				} else {
 ?>
