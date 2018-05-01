@@ -522,16 +522,17 @@ VirtualHost {
 	#ReverseProxy ^/.* http://127.0.0.1:30080/ <?=$timeout;?>
 
 	#ReverseProxy !\.(pl|cgi|py|rb|shmtl) <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
-	
+<?php	
 	if ($webcache !== 'none') {
-	
+?>	
 	ReverseProxy ^/.* http://127.0.0.1:8080/ <?=$timeout;?>
-	
+<?php	
 	} else {
-
+?>
 	ReverseProxy ^/.* <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
-
+<?php
 	}
+?>
 <?php
 		} else {
 */
@@ -796,16 +797,17 @@ VirtualHost {
 	#ReverseProxy ^/.* http://127.0.0.1:30080/ <?=$timeout;?>
 
 	#ReverseProxy !\.(pl|cgi|py|rb|shmtl) <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
-
+<?php
 	if ($webcache !== 'none') {
-	
+?>	
 	ReverseProxy ^/.* http://127.0.0.1:8080/ <?=$timeout;?>
-	
+<?php	
 	} else {
-	
+?>	
 	ReverseProxy ^/.* <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
-
+<?php
 	}
+?>
 <?php
 					}
 				} else {
@@ -934,16 +936,17 @@ VirtualHost {
 	#ReverseProxy ^/.* http://127.0.0.1:30080/ <?=$timeout;?>
 
 	#ReverseProxy !\.(pl|cgi|py|rb|shmtl) <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
-
+<?php
 	if ($webcache !== 'none') {
-	
+?>	
 	ReverseProxy ^/.* http://127.0.0.1:8080/ <?=$timeout;?>
-	
+<?php	
 	} else {
-	
+?>	
 	ReverseProxy ^/.* <?=$protocols[$count];?>://127.0.0.1:<?=$reverseports[$count];?>/ <?=$timeout;?>
-	
+<?php	
 	}
+?>
 <?php
 				} else {
 ?>
